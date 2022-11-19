@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemmallController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,"index"]);
+Route::get('/home', [HomeController::class,"index"]);
+
+Route::group(["middleware"=>"guest"],function(){
+    Route::get("/register",[AuthController::class,"registerIndex"]);
+    Route::get("/login",[AuthController::class,"loginIndex"])->name("login");
+});
+
+
+Route::group(["middleware"=>"auth"],function(){
+    Route::get("/itemmall",[ItemmallController::class,"index"]);
+});
+
