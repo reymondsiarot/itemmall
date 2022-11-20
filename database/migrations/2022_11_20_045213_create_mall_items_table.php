@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mall_items', function (Blueprint $table) {
+        Schema::connection("sqlsrv1")->create('items', function (Blueprint $table) {
             $table->id();
+            $table->integer("type");
             $table->string("name");
+            $table->string("category");
             $table->text('description');
             $table->decimal("price",20,2);
-            $table->integer("discount_percent");
+            $table->integer("discount_percent")->range(0,100);
             $table->integer("stack");
             $table->string("image");
+            $table->boolean("show")->default(true);
             $table->timestamps();
         });
     }
@@ -32,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mall_items');
+        Schema::connection("sqlsrv1")->dropIfExists('items');
     }
 };

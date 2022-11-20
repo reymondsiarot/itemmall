@@ -6,12 +6,13 @@
         <button type="submit" v-bind="props" class="read_more2" style="width:100%">Add Item</button>
       </template>
 
-      <v-card>
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </v-card-text>
+      <v-card dark>
+
+        <v-card-title>
+          Add Item
+        </v-card-title>
         <v-card-actions>
-          <v-btn color="primary" block @click="dialog = false">Close Dialog</v-btn>
+          <button type="submit" v-bind="props" class="read_more2 addbtn">Add</button>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -35,5 +36,9 @@ export default {
 .additem-container .read_more2 {
   color: white;
   padding: 10px 20px;
+}
+.addbtn {
+  width: 100px;
+  color: white;
 }
 </style>
