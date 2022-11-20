@@ -4,7 +4,7 @@
       <tr>
 
         <!-- Left wrapper Start -->
-        <td valign="top" id="left_wrapper" style="width:100%;background: none;">
+        <td id="left_wrapper" style="width:100%;background: none;">
 
           <div class="header">
             <h2>
@@ -12,27 +12,27 @@
             </h2>
           </div>
 
-          <div class="login-wrapper">
+          <form class="login-wrapper" @submit.prevent="onLogin">
             <div class="login-container">
               <div class="input-container">
                 <label for="username">Username:</label>
-                <input type="text" />
+                <v-text-field width="100%" density="compact" variant="solo" single-line hide-details type="text" v-model="login.username" />
               </div>
               <div class="input-container">
                 <label for="password">Password:</label>
-                <input type="password" />
+                <v-text-field width="100%" density="compact" variant="solo" single-line hide-details type="password" v-model="login.password" />
               </div>
 
               <div class="input-container flex">
                 <label for="rememberme">
-                  <input type="checkbox" id="rememberme" style="width: 20px; margin-top:;" />
+                  <input type="checkbox" v-model="login.remember" id="rememberme" style="width: 20px; margin-top:;" />
                   <div> Remember me</div>
                 </label>
 
               </div>
 
               <div class="input-container">
-                <input type="submit" value="Login" class="read_more2" style="width:100%">
+                <button type="submit" class="read_more2" style="width:100%">Login</button>
               </div>
 
               <div class="input-container">
@@ -40,7 +40,7 @@
               </div>
 
             </div>
-          </div>
+          </form>
 
         </td>
         <!-- Left wrapper end -->
@@ -54,6 +54,27 @@
 import AppLayoutVue from "../../Layouts/AppLayout.vue";
 export default {
   layout: AppLayoutVue,
+  data() {
+    return {
+      login: {
+        username: "",
+        password: "",
+        remember: "",
+      },
+    };
+  },
+  methods: {
+    async onLogin() {
+      try {
+        const { data } = await axios.post("/login", this.login);
+        if (data.success) {
+          location.reload();
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
 };
 </script>
 
@@ -64,11 +85,10 @@ export default {
   align-items: center;
 }
 .login-wrapper {
-  display: flex;
-  justify-content: center;
+  height: 400px;
 }
 .login-container {
-  max-width: 500px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
@@ -86,5 +106,9 @@ export default {
 }
 .login-container > * + * {
   margin-top: 20px;
+}
+
+.read_more2 {
+  color: white;
 }
 </style>

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link rel="stylesheet" href="{{ asset("") }}">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <link rel="stylesheet" href="{{ asset("stylesheets/main.css") }}" />
-    <link rel="stylesheet" href="stylesheets/post.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-    <link rel="stylesheet" href="{{ asset("stylesheets/paralax_slider.css") }}" />
-    <link rel="stylesheet" href="{{ asset("stylesheets/jquery.fancybox1c51.css?v=2.1.2") }}" type="text/css"  media="screen" />
+     <link rel="stylesheet" href="{{ asset("stylesheets/main.css") }}" />
+     <link rel="stylesheet" href="stylesheets/post.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+     <link rel="stylesheet" href="{{ asset("stylesheets/paralax_slider.css") }}" />
+     <link rel="stylesheet" href="{{ asset("stylesheets/jquery.fancybox1c51.css?v=2.1.2") }}" type="text/css"  media="screen" />
 
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @inertiaHead
 </head>
 <body>

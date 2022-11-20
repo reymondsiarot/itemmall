@@ -19,9 +19,26 @@
           <ul id="menu" style="position:relative">
             <li><a href="/">Home</a></li>
             <li><a href="/itemmall">Item Mall</a></li>
-            <li class="sign-up-tab">
+            <li v-if="user && user.grade == 250"> <a href="/user/management">User Management</a></li>
+            <li class="sign-up-tab" v-if="!user">
               <a href="/login">Login</a>
               <a href="/register">Register</a>
+            </li>
+            <li v-else class="sign-up-tab">
+
+              <v-menu>
+                <template v-slot:activator="{ props }">
+
+                  <a href="#" v-bind="props">{{ user.login_id }}</a>
+
+                </template>
+                <div class="menu-container">
+                  <div>
+                    <div class="menu-item" @click="logout">Logout</div>
+                  </div>
+                </div>
+              </v-menu>
+
             </li>
 
           </ul>
@@ -48,7 +65,25 @@
 
 </template>
 
-
+<script>
+export default {
+  computed: {
+    user() {
+      return this.$page.props.auth.user;
+    },
+  },
+  methods: {
+    async logout() {
+      try {
+        const response = await axios.post("logout");
+        if (response.data.success) {
+          location.reload();
+        }
+      } catch (er) {}
+    },
+  },
+};
+</script>
 <style scoped>
 #menu_wrapper {
   display: flex;
@@ -61,5 +96,35 @@
   position: absolute;
   display: flex;
   right: 0;
+}
+ul#menu li a {
+  height: 56px;
+}
+.menu-container {
+  background: #2f2e2c;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: -20px;
+  margin-top: 5px;
+}
+.menu-container .menu-item {
+  padding: 10px 30px;
+  color: #fff;
+  font-size: 14px;
+}
+.menu-container .menu-item:hover {
+  background: #605e59;
+  color: #fff;
+  cursor: pointer;
+}
+</style>
+
+<style>
+input:hover,
+textarea:hover,
+select:active {
+  border: transparent;
 }
 </style>

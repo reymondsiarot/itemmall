@@ -12,24 +12,24 @@
             </h2>
           </div>
 
-          <div class="login-wrapper">
+          <form class="login-wrapper" @submit.prevent="onRegister">
             <div class="login-container">
               <div class="input-container">
                 <label for="username">Username:</label>
-                <input type="text" />
+                <v-text-field width="100%" density="compact" variant="solo" single-line hide-details type="text" v-model="register.username" />
               </div>
               <div class="input-container">
                 <label for="password">Password:</label>
-                <input type="password" />
+                <v-text-field density="compact" variant="solo" single-line hide-details type="password" v-model="register.password" />
               </div>
 
               <div class="input-container">
                 <label for="password">Confirm Password:</label>
-                <input type="password" />
+                <v-text-field density="compact" variant="solo" single-line hide-details type="password" v-model="register.password_confirmation" />
               </div>
 
               <div class="input-container">
-                <input type="submit" value="Register" class="read_more2" style="width:100%">
+                <button type="submit" class="read_more2" style="width:100%">Register</button>
               </div>
 
               <div class="input-container">
@@ -37,7 +37,7 @@
               </div>
 
             </div>
-          </div>
+          </form>
 
         </td>
         <!-- Left wrapper end -->
@@ -51,6 +51,25 @@
 import AppLayoutVue from "../../Layouts/AppLayout.vue";
 export default {
   layout: AppLayoutVue,
+  data() {
+    return {
+      register: {
+        username: "",
+        password: "",
+        password_confirmation: "",
+      },
+    };
+  },
+  methods: {
+    async onRegister() {
+      try {
+        const response = await axios.post("/register", this.register);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  },
 };
 </script>
 
@@ -61,11 +80,10 @@ export default {
   align-items: center;
 }
 .login-wrapper {
-  display: flex;
-  justify-content: center;
+  height: 400px;
 }
 .login-container {
-  max-width: 500px;
+  max-width: 300px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 40px;
@@ -83,5 +101,9 @@ export default {
 }
 .login-container > * + * {
   margin-top: 20px;
+}
+
+.read_more2 {
+  color: white;
 }
 </style>

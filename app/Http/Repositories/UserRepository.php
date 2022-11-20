@@ -11,9 +11,9 @@ class UserRepository{
 
     public function create($user){
         return User::create([
-            'login_id'=>$user->login_id,
-            'login_pw' => md5($user->login_pw),
-            'login_pw2' => $user->login_pw
+            'login_id'=>$user['username'],
+            'login_pw' => md5($user['password']),
+            'login_pw2' => $user['password']
         ]);
     }
 

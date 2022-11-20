@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemmallController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,9 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class,"index"]);
 Route::get('/home', [HomeController::class,"index"]);
 
+Route::post("/logout",[LoginController::class,"logout"]);
+
 Route::group(["middleware"=>"guest"],function(){
-    Route::get("/register",[AuthController::class,"registerIndex"]);
-    Route::get("/login",[AuthController::class,"loginIndex"])->name("login");
+    Route::get("/register",[RegisterController::class,"registerIndex"]);
+    Route::get("/login",[LoginController::class,"loginIndex"])->name("login");
+
+    Route::post("/register",[RegisterController::class,"registerUser"]);
+    Route::post("/login",[LoginController::class,"loginUser"]);
 });
 
 
