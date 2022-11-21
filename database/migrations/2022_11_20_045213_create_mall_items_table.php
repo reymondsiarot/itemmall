@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection("sqlsrv1")->create('items', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->integer("type");
             $table->string("name");
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection("sqlsrv1")->dropIfExists('items');
+        Schema::dropIfExists('items');
     }
 };

@@ -1,7 +1,7 @@
 <template>
 
   <!--********************************************* Main wrapper Start *********************************************-->
-  <div id="footer_image">
+  <div id="footer_image" style="min-height:auto">
     <div id="main_wrapper">
 
       <!--********************************************* Logo Start *********************************************-->
@@ -50,19 +50,18 @@
         <!--********************************************* Mainmenu end *********************************************-->
 
         <slot></slot>
-        <div class="top_shadow"></div>
+        <!-- <div class="top_shadow"></div> -->
 
-        <div id="hot_news">
+        <!-- <div id="hot_news">
           <div class="header">
           </div>
-        </div>
+        </div> -->
 
       </div>
       <!--********************************************* Main_in end *********************************************-->
 
     </div>
   </div>
-
 </template>
 
 <script>
@@ -127,4 +126,9 @@ textarea:hover,
 select:active {
   border: transparent;
 }
+
+.v-application__wrap {
+  min-height: auto !important;
+}
 </style>
+

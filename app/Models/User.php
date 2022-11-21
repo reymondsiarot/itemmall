@@ -12,7 +12,7 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $connection = "sqlsrv";
+    protected $connection = "sqlsrv_user";
     protected $primaryKey = 'user_id';
 
     public $timestamps = false;

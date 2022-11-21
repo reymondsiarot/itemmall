@@ -4,16 +4,10 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
-import "vuetify/styles";
+// import "vuetify/styles";
+import { md3 } from "vuetify/blueprints";
 import { createVuetify } from "vuetify";
-import * as components from "vuetify/components";
-import * as directives from "vuetify/directives";
-
-const vuetify = createVuetify({
-    components,
-    directives,
-});
-
+import "vuetify/dist/vuetify.min.css";
 createInertiaApp({
     resolve: (name) =>
         resolvePageComponent(
@@ -21,6 +15,13 @@ createInertiaApp({
             import.meta.glob("./Pages/**/*.vue")
         ),
     setup({ el, App, props, plugin }) {
+        const vuetify = createVuetify({
+            // blueprint: md3,
+            // theme: {
+            //     defaultTheme: "dark",
+            // },
+        });
+
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(vuetify)

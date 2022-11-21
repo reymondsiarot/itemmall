@@ -1,7 +1,7 @@
 <template>
   <div class="itemmall-container">
     <div class="itemmall-header">
-      <AddItem></AddItem>
+      <AddItem v-if="user.grade == 250"></AddItem>
     </div>
   </div>
 </template>
@@ -13,6 +13,11 @@ export default {
   layout: AppLayoutVue,
   components: {
     AddItem,
+  },
+  computed: {
+    user() {
+      return this.$page.props.auth.user;
+    },
   },
 };
 </script>

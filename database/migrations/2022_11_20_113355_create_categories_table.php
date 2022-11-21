@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::connection("sqlsrv1")->create('categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
             $table->string("description")->nullable();
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection("sqlsrv1")->dropIfExists('categories');
+        Schema::dropIfExists('categories');
     }
 };

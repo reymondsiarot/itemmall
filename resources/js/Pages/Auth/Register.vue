@@ -64,7 +64,9 @@ export default {
     async onRegister() {
       try {
         const response = await axios.post("/register", this.register);
-        console.log(response);
+        if (response.data && response.data.success) {
+          return location.reload();
+        }
       } catch (err) {
         console.log(err);
       }
